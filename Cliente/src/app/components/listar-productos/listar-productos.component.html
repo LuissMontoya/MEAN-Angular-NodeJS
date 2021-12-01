@@ -1,46 +1,47 @@
 <div class="container mt-5">
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
-            <div class="card">
-                <div class="card-body text-center">
-                    <span class="titulo">Listado de Productos</span>
-                    <button class="btn btn-success float-end"  routerLink="/crear-producto">Buscar</button>
+  <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+      <div class="card">
+        <div class="card-body text-center">
+          <span class="titulo">Listado de Productos</span>
+          <button
+            class="btn btn-success float-end"
+            routerLink="/crear-producto"
+          >
+            Nuevo
+          </button>
 
-                    <table class="table table-striped mt-3">
-                      <thead>
-                        <tr>
-                          <th scope="col">Producto</th>
-                          <th scope="col">Categoria</th>
-                          <th scope="col">Ubicacion</th>
-                          <th scope="col">Precio</th>
-                          <th scope="col"></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Petsi</td>
-                          <td>Bebida</td>
-                          <td>Mexico</td>
-                          <td>3</td>
-                          <td>
-                            <i class="fas fa-edit text-primary"></i>
-                            <i class="fas fa-trash text-danger"></i></td>
-                        </tr>
-                        <tr>
-                          <td>CocaCola</td>
-                          <td>Bebida</td>
-                          <td>Colombia</td>
-                          <td>2</td>
-                          <td>
-                            <i class="fas fa-edit text-primary"></i>
-                            <i class="fas fa-trash text-danger"></i>
-                          </td>
-                        </tr>
-
-                      </tbody>
-                    </table>
-                </div>
-            </div>
+          <table
+            *ngIf="listProductos.length > 0"
+            class="table table-striped mt-3"
+          >
+            <thead>
+              <tr>
+                <th scope="col">Producto</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Ubicacion</th>
+                <th scope="col">Precio</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let producto of listProductos">
+                <td>{{ producto.nombre }}</td>
+                <td>{{ producto.categoria }}</td>
+                <td>{{ producto.ubicacion }}</td>
+                <td>{{ producto.precio | currency: "$" }}</td>
+                <td>
+                  <i [routerLink]="['/editar-producto/', producto._id]" class="fas fa-edit text-primary"></i>
+                  <i (click)="eliminarProducto(producto._id)" class="fas fa-trash text-danger"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <h5 style="text-align: start; margin-top: 10px;" *ngIf="listProductos.length == 0">
+            No hay productos disponibles!
+          </h5>
         </div>
+      </div>
     </div>
+  </div>
 </div>
