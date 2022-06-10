@@ -1,2 +1,2 @@
 # MEAN-Angular-NodeJS
-CRUD completo con el Stack MEAN (Mongo, Express, Angular y Node) 
+Full CRUD with the MEAN Stack (Mongo, Express, Angular and Node)
